@@ -75,15 +75,15 @@ header .container .show-menu {
   display: none;
   justify-content: center;
   align-items: center;
-  margin-left: 1rem;
+  margin-left: 8px;
   padding: 4px;
   background: #2b78df;
   border-radius: 10px;
   color: white;
 }
 header .container .show-menu svg {
-  width: 35px;
-  height: 35px;
+  width: 33px;
+  height: 33px;
   stroke: white;
 }
 @media (max-width: 767.98px) {
@@ -532,7 +532,7 @@ footer svg {
 }
 .ar header .show-menu {
   margin-left: 0;
-  margin-right: 1rem;
+  margin-right: 8px;
 }
 .ar .hero .container > div form .input-group input {
   padding-left: 0%;
@@ -546,21 +546,31 @@ footer svg {
   gap: 8px;
 }
 .auth-btns button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
+  gap: 4px;
 }
 .auth-btns .login {
-  padding: 4px 16px;
+  padding: 8px 8px;
   border-radius: 10px;
   background-color: #f77896;
   font-size: 13px;
   color: #121a20;
 }
+.auth-btns .login svg {
+  stroke: #121a20;
+}
 .auth-btns .register {
-  padding: 4px 16px;
+  padding: 8px 8px;
   border-radius: 10px;
   background-color: #2b78df;
   font-size: 13px;
   color: #fff;
+}
+.auth-btns .register svg {
+  stroke: white;
 }
 
 .login-popup, .register-popup {
@@ -569,6 +579,8 @@ footer svg {
   left: 50%;
   z-index: 9999;
   background: white;
+  width: 100%;
+  max-width: 320px;
   padding: 16px;
   transform: translate(-50%, -50%);
   border-radius: 10px;
