@@ -539,4 +539,68 @@ footer svg {
   padding-right: 3rem;
 }
 
+.auth-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.auth-btns button {
+  border: none;
+}
+.auth-btns .login {
+  padding: 4px 16px;
+  border-radius: 10px;
+  background-color: #f77896;
+  font-size: 13px;
+  color: #121a20;
+}
+.auth-btns .register {
+  padding: 4px 16px;
+  border-radius: 10px;
+  background-color: #2b78df;
+  font-size: 13px;
+  color: #fff;
+}
+
+.login-popup, .register-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  background: white;
+  padding: 16px;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: 1px 2px 11px 3px rgba(186, 186, 186, 0.2);
+  display: none;
+}
+.login-popup h2, .register-popup h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #001635;
+}
+.login-popup input, .register-popup input {
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #dadada;
+  background-color: #FDFDFD;
+  font-size: 18px;
+  border-radius: 5px;
+  padding-left: 40px;
+  color: #001635;
+  margin-bottom: 10px;
+}
+.login-popup .submit, .register-popup .submit {
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: #2b78df;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin: auto;
+}
+
 /*# sourceMappingURL=main.css.map */
