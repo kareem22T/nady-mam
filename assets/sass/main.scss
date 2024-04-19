@@ -436,6 +436,145 @@ section.slider {
     }
 }
 
+.doctor {
+    padding: 24px 0;
+    background-color: #efefef;
+    .container {
+        .card_wrapper {
+            padding: 16px;
+            background-color: white;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 26px;
+            display: flex;
+            gap: 24px;
+            @media (max-width: 767.98px) {
+                flex-direction: column;
+            }
+        }
+        .image_wrapper {
+            width: max-content;
+            width: 300px;
+            min-width: 300px;
+            @media (max-width: 778.98px) {
+                width: 100%;
+            }
+            .img {
+                width: 100%;
+                min-height: 400px;
+                position: relative;
+                border-radius: 10px;
+                overflow: hidden;
+                @media (max-width: 575.98px) {
+                    min-height: 300px;
+                }
+                img {
+                    position: absolute;
+                    width: 100%;
+                    object-fit: cover;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                }
+            }
+            >h2 {
+                font-weight: 400;
+                text-align: center;
+                color: #625c53;
+                font-size: 24px;
+                margin-top: 16px;
+                margin-bottom: 4px;
+            }
+            .rate {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 4px;
+                margin-bottom: 8px;
+                svg {
+                    width: 25px;
+                    height: 25px;
+                }
+                svg path{
+                    fill: #ffe699;
+                }
+            }
+            >p {
+                color: #6b6969;
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+        .text_wrapper {
+            width: 100%;
+            .desc {
+                font-weight: 500;
+                color: #604f81;
+                font-size: 14px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #dbdbdb;
+            }
+            .price, .price, .phone, .host {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 16px;
+                color: #747373;
+                margin-top: 8px;
+                margin-bottom: 0;
+                border-bottom: 1px solid #dbdbdb;
+                width: max-content;
+                padding-bottom: 8px;
+                width: 100%;
+                span {
+                    color: #a7a513;
+                }
+                svg {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+            .phone {
+                font-weight: 700 !important;
+                align-items: start;
+            }
+            .host {
+                display: block;
+                span {
+                    color: $main-color;
+                    font-weight: 700;
+                    font-size: 18px;
+                    display: block;
+                }
+            }
+            .slots {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 16px;
+                margin: 24px 0 16px;
+                .slot {
+                    margin-bottom: 8px;
+                    label {
+                        color: #efefef;
+                        border: 2px solid #efefef;
+                        padding: 4px 16px;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        transition: .3s ease-in all;
+                    }
+                    input {
+                        display: none;
+                        &:checked + label{
+                            color: $main-color;
+                            border-color: $secondary-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 footer {
     text-align: center;
     color: white;
