@@ -525,6 +525,9 @@ section.slider {
                 width: max-content;
                 padding-bottom: 8px;
                 width: 100%;
+                @media (max-width: 575.97px) {
+                    font-size: 14px;
+                }
                 span {
                     color: #a7a513;
                 }

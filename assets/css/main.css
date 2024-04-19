@@ -603,6 +603,11 @@ section.slider .swiper-slide .text button {
   padding-bottom: 8px;
   width: 100%;
 }
+@media (max-width: 575.97px) {
+  .doctor .container .text_wrapper .price, .doctor .container .text_wrapper .price, .doctor .container .text_wrapper .phone, .doctor .container .text_wrapper .host {
+    font-size: 14px;
+  }
+}
 .doctor .container .text_wrapper .price span, .doctor .container .text_wrapper .price span, .doctor .container .text_wrapper .phone span, .doctor .container .text_wrapper .host span {
   color: #a7a513;
 }
