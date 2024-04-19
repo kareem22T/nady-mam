@@ -465,7 +465,48 @@ section.slider {
                 border-radius: 10px;
                 overflow: hidden;
                 @media (max-width: 575.98px) {
-                    min-height: 300px;
+                    min-height: 310px;
+                }
+                .details {
+                    position: absolute;
+                    bottom: 16px;
+                    display: flex;
+                    right: 16px;
+                    flex-direction: column;
+                    h2 {
+                        color: white;
+                        width: max-content;
+                        font-size: 22px;
+                        padding: 0 16px 0 32px;
+                        margin: 0;
+                        background-color: $secondary-color;
+                    }
+                    p {
+                        padding: 2px 8px;
+                        font-size: 14px;
+                        color: gray;
+                        background-color: white;
+                        margin-top: 4px;
+                    }
+                    .social {
+                        background-color: white;
+                        width: max-content;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 4px;
+                        margin-top: 8px;
+                        padding: 4px 8px;
+                        border-radius: 10px;
+                        a {
+                            text-decoration: none;
+                            svg {
+                                width: 22px;
+                                height: 22px;
+                                display: flex;
+                            }
+                        }
+                    }
                 }
                 img {
                     position: absolute;
@@ -518,13 +559,15 @@ section.slider {
                 align-items: center;
                 gap: 4px;
                 font-size: 16px;
-                color: #747373;
+                color: #747373 !important;
                 margin-top: 8px;
                 margin-bottom: 0;
                 border-bottom: 1px solid #dbdbdb;
                 width: max-content;
                 padding-bottom: 8px;
+                white-space: normal !important;
                 width: 100%;
+                max-width: 100%;
                 @media (max-width: 575.97px) {
                     font-size: 14px;
                 }
