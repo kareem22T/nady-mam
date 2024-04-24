@@ -1,6 +1,7 @@
 @import './roles';
 
 header {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
     .container {
         display: flex;
         gap: 2rem;
@@ -617,6 +618,107 @@ section.slider {
                     }
                 }
             }
+        }
+    }
+}
+
+.doctors {
+    .head {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        align-items: center;
+        margin-top: 2rem;
+        margin-bottom: 24px;
+        @media (max-width: 575.98px) {
+            margin-top: 1.25rem;
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            color: #2c3e50;
+        }
+        a {
+            text-decoration: none;
+            color: #121a20;
+        }
+        @media (max-width: 575.98px) {
+            h2 {
+                font-size: 16px;
+                gap: 4px;
+                svg {
+                    width: 30px;
+                }
+            }
+            a {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .doctors-parent {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 16px;
+        @media (max-width: 1199.98px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        @media (max-width: 992.98px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @media (max-width: 767.98px) {
+            grid-template-columns: 1fr 1fr;
+        }
+        .doctor-card {
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            .thumbnail {
+                width: 100%;
+                overflow: hidden;
+                max-height: 160px;
+                @media (max-width: 575.98px) {
+                    max-height: 140px;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .text {
+                padding: 10px;
+                @media (max-width: 575.98px) {
+                    padding: 8px;
+                }
+                p {
+                    font-size: 15px;
+                    text-align: center;
+                    padding: 10px;
+                    line-height: 22px;
+                    @media (max-width: 575.98px) {
+                        font-size: 13px;
+                    }
+                }
+                button {
+                    padding: 10px;
+                    @media (max-width: 575.98px) {
+                        padding: 4px;
+                    }
+                    width: 100%;
+                    color: white;
+                    background-color: $main-color;
+                    border: none;
+                    border-radius: 8px;
+                }
+            }
+    
         }
     }
 }

@@ -53,6 +53,9 @@
     width: 1140px;
   }
 }
+header {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+}
 header .container {
   display: flex;
   gap: 2rem;
@@ -695,6 +698,119 @@ section.slider .swiper-slide .text button {
 .doctor .container .text_wrapper .slots .slot input:checked + label {
   color: #2b78df;
   border-color: #f77896;
+}
+
+.doctors .head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 24px;
+}
+@media (max-width: 575.98px) {
+  .doctors .head {
+    margin-top: 1.25rem;
+    margin-bottom: 16px;
+  }
+}
+.doctors .head h2 {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #2c3e50;
+}
+.doctors .head a {
+  text-decoration: none;
+  color: #121a20;
+}
+@media (max-width: 575.98px) {
+  .doctors .head h2 {
+    font-size: 16px;
+    gap: 4px;
+  }
+  .doctors .head h2 svg {
+    width: 30px;
+  }
+  .doctors .head a {
+    font-size: 13px;
+  }
+}
+.doctors .doctors-parent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 1199.98px) {
+  .doctors .doctors-parent {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 992.98px) {
+  .doctors .doctors-parent {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 767.98px) {
+  .doctors .doctors-parent {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.doctors .doctors-parent .doctor-card {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.doctors .doctors-parent .doctor-card .thumbnail {
+  width: 100%;
+  overflow: hidden;
+  max-height: 160px;
+}
+@media (max-width: 575.98px) {
+  .doctors .doctors-parent .doctor-card .thumbnail {
+    max-height: 140px;
+  }
+}
+.doctors .doctors-parent .doctor-card .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.doctors .doctors-parent .doctor-card .text {
+  padding: 10px;
+}
+@media (max-width: 575.98px) {
+  .doctors .doctors-parent .doctor-card .text {
+    padding: 8px;
+  }
+}
+.doctors .doctors-parent .doctor-card .text p {
+  font-size: 15px;
+  text-align: center;
+  padding: 10px;
+  line-height: 22px;
+}
+@media (max-width: 575.98px) {
+  .doctors .doctors-parent .doctor-card .text p {
+    font-size: 13px;
+  }
+}
+.doctors .doctors-parent .doctor-card .text button {
+  padding: 10px;
+  width: 100%;
+  color: white;
+  background-color: #2b78df;
+  border: none;
+  border-radius: 8px;
+}
+@media (max-width: 575.98px) {
+  .doctors .doctors-parent .doctor-card .text button {
+    padding: 4px;
+  }
 }
 
 footer {
