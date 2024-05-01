@@ -17,10 +17,10 @@
     <header>
         <div class="container">
             <div>
-                <img src="./assets/imgs/logo.jpg" alt="" class="logo">
+                <a href="/"><img src="./assets/imgs/logo.jpg" alt="" class="logo"></a>
                 <div class="hide-content"></div>
                 <nav>
-                    <a href="">الرئيسية</a>
+                    <a href="/">الرئيسية</a>
                     <a href="">الاطباء</a>
                     <a href="">المدونة</a>
                     <a href="">من نحن</a>
@@ -101,14 +101,36 @@
         </div>
         <button class="submit">دخول</button>
     </div>
+    
+    <div class="booking-popup">
+        <h2>بيانات الحجز</h2>
+        <div class="input-group">
+            <input type="text" name="name" id="name" placeholder="الاسم">
+        </div>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+        </div>
+        <div class="input-group">
+            <input type="text" name="phone" id="phone" placeholder="رقم الهاتف">
+        </div>
+        <button class="book submit">حجز</button>
+    </div>
+    <div class="success-booking-popup">
+        <h1 style="font-size: 21px;text-align: center;">تم الحجز بنجاح سوف نتواصل معك للتاكيد</h1>
+        <svg style="width: 80px;height: 80px;padding: 8px;border: 2px solid #8dc645;border-radius: 50%;margin: 16px auto;display: block;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#8dc645" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l5 5l10 -10" />
+        </svg>
+        <button class="close-success submit">اغلاق</button>
+    </div>
     <section class="doctor">
         <div class="container">
             <div class="card_wrapper">
                 <div class="image_wrapper">
                     <div class="img">
-                        <img src="./assets/imgs/doctor-female.jpg" alt="">
+                        <img src="./assets/imgs/13-Dr.Sherine Sabry.jpg" alt="">
                         <div class="details">
-                            <h2 class="name">د/ منال الحربي</h2>
+                            <h2 class="name">د/ شيرين صبري </h2>
                             <p>
                                 استشاري جلدية الاطفال جامعة الازهر
                             </p>
@@ -160,6 +182,7 @@
                         </svg> 
                     </div>
                     <p>متوسط التقيم: 5/5. مرات التقيم: 4</p>
+                    <button class="comfirm-booking">اتمام الحجز</button>
                 </div>
                 <div class="text_wrapper">
                     <p class="desc">
@@ -237,94 +260,94 @@
             <div class="slider-parent">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                        <div class="swiper-slide">
                             <div class="thumbnail">
-                                <img src="./assets/imgs/doctor.jpg" alt="">
+                                <img src="./assets/imgs/1- Dr. Adel Awad El Hosainy.jpg" alt="">
                                 <span class="title">
-                                    استشاري
+                                    استاذ
                                 </span>
                             </div>
                             <div class="text">
                                 <p>
-                                    الدكتور مدحت اسماعيل
-                                    <br>
-                                    استشاري مخ واعصاب
-                                    <br>
-                                    الاطفال جامعة القاهرة
+                                    <strong>
+                                        دكتور عادل عواد الحسيني
+                                    </strong>
+                                <br>
+                                امراض دم اطفال
                                 </p>
-                                <button>عرض التفاصيل</button>
+                                <a href="/doctor.html">عرض التفاصيل</a>
                             </div>        
                       </div>
                       <div class="swiper-slide">
                             <div class="thumbnail">
-                                <img src="./assets/imgs/doctor.jpg" alt="">
+                                <img src="./assets/imgs/2- Dr. Rasha Abdel Salam.jpg" alt="">
                                 <span class="title">
-                                    استشاري
+                                    استشارى
                                 </span>
                             </div>
                             <div class="text">
                                 <p>
-                                    الدكتور مدحت اسماعيل
-                                    <br>
-                                    استشاري مخ واعصاب
-                                    <br>
-                                    الاطفال جامعة القاهرة
-                                </p>
-                                <button>عرض التفاصيل</button>
+                                    <strong>
+                                        دكتورة رشا عبد العال
+                                    </strong>
+                                <br>
+                                صدر و حساسية اطفال
+                            </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
                             </div>        
                       </div>
                       <div class="swiper-slide">
                             <div class="thumbnail">
-                                <img src="./assets/imgs/doctor.jpg" alt="">
+                                <img src="./assets/imgs/3- DR. Mostafa El Abbasy.jpg" alt="">
                                 <span class="title">
-                                    استشاري
+                                    اخصائي
                                 </span>
                             </div>
                             <div class="text">
                                 <p>
-                                    الدكتور مدحت اسماعيل
-                                    <br>
-                                    استشاري مخ واعصاب
-                                    <br>
-                                    الاطفال جامعة القاهرة
+                                    <strong>
+                                        دكتور مصطفي العباسي
+                                    </strong>
+                                <br>
+                                غدد صماء و سكر أطفال
                                 </p>
-                                <button>عرض التفاصيل</button>
+                                <a href="/doctor.html">عرض التفاصيل</a>
                             </div>        
                       </div>
                       <div class="swiper-slide">
                             <div class="thumbnail">
-                                <img src="./assets/imgs/doctor.jpg" alt="">
+                                <img src="./assets/imgs/4- Dr. El Saady Abd El Razikdy Abd El-Razik.jpg" alt="">
                                 <span class="title">
-                                    استشاري
+                                    أستاذ
                                 </span>
                             </div>
                             <div class="text">
                                 <p>
-                                    الدكتور مدحت اسماعيل
-                                    <br>
-                                    استشاري مخ واعصاب
-                                    <br>
-                                    الاطفال جامعة القاهرة
+                                    <strong>
+                                        دكتور السعدي عبد الرازق
+                                    </strong>
+                                <br>
+                                استاذ قلب الأطفال
                                 </p>
-                                <button>عرض التفاصيل</button>
+                                <a href="/doctor.html">عرض التفاصيل</a>
                             </div>        
                       </div>
                       <div class="swiper-slide">
                             <div class="thumbnail">
-                                <img src="./assets/imgs/doctor.jpg" alt="">
+                                <img src="./assets/imgs/5- Dr. Thabet Abd El-Wareth.jpg" alt="">
                                 <span class="title">
-                                    استشاري
+                                    إستشاري
                                 </span>
                             </div>
                             <div class="text">
                                 <p>
-                                    الدكتور مدحت اسماعيل
-                                    <br>
-                                    استشاري مخ واعصاب
-                                    <br>
-                                    الاطفال جامعة القاهرة
+                                    <strong>
+                                        دكتور ثابت عبد الوارث
+                                    </strong>
+                                <br>
+                                    كلى أطفال
                                 </p>
-                                <button>عرض التفاصيل</button>
+                                <a href="/doctor.html">عرض التفاصيل</a>
                             </div>        
                       </div>
                     </div>
@@ -441,6 +464,7 @@
                 $(".hide-content").on("click", function (e) {
                     e.preventDefault()
                     $(".login-popup").fadeOut()
+                    $(".booking-popup").fadeOut()
                     $(".register-popup").fadeOut()
                         $("nav, .hide-content").addClass("animate__slideOutRight").fadeOut()
                         $("nav, .hide-content").removeClass("animate__slideInRight")
@@ -456,6 +480,20 @@
             $(".login").on("click", function () {
                 $(".login-popup").fadeIn()
                 $(".hide-content").fadeIn()
+            })
+            $(".comfirm-booking").on("click", function () {
+                $(".booking-popup").fadeIn()
+                $(".hide-content").fadeIn()
+            })
+            $(".book").on("click", function () {
+                $(".success-booking-popup").fadeIn()
+                $(".booking-popup").fadeOut()
+                $(".hide-content").fadeIn()
+            })
+            $(".close-success").on("click", function () {
+                $(".success-booking-popup").fadeOut()
+                $(".booking-popup").fadeOut()
+                $(".hide-content").fadeOut()
             })
             $(".register").on("click", function () {
                 $(".register-popup").fadeIn()

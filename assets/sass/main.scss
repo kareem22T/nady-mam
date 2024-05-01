@@ -379,6 +379,10 @@ section.slider {
         box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
         border-radius: 10px;
         overflow: hidden;
+        position: relative;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
         .thumbnail {
             width: 100%;
             overflow: hidden;
@@ -387,24 +391,56 @@ section.slider {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                object-position: top;
+            }
+            .title {
+                position: absolute;
+                z-index: 9999;
+                top: 147.5px;
+                font-weight: 700 !important;
+                min-width: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: $secondary-color;
+                font-size: 12px;
+                padding: 2px 16px;
+                height: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 15px;
+                color: white;
             }
         }
         .text {
             padding: 10px;
+            height: 50%;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
             p {
-                font-size: 15px;
+                font-size: 14px;
                 text-align: center;
                 padding: 10px;
                 line-height: 22px;
             }
-            button {
+            a {
                 padding: 10px;
+                @media (max-width: 575.98px) {
+                    padding: 4px;
+                }
                 width: 100%;
                 color: white;
+                display: block;
+                font-size: 16px;
+                padding: 4px 16px;
+                margin: auto;
+                text-align: center;
+                text-decoration: none;
                 background-color: $main-color;
                 border: none;
                 border-radius: 8px;
-            }
+        }
         }
     }
 }
@@ -459,9 +495,22 @@ section.slider {
             @media (max-width: 778.98px) {
                 width: 100%;
             }
+            .comfirm-booking {
+                margin: auto;
+                margin-top: auto;
+                display: block;
+                margin-top: 8px;
+                padding: 8px 32px;
+                background: $main-color;
+                color: white;
+                font-weight: 700;
+                border: none;
+                border-radius: 10px;
+                width: 100%;
+            }
             .img {
                 width: 100%;
-                min-height: 400px;
+                min-height: 340px;
                 position: relative;
                 border-radius: 10px;
                 overflow: hidden;
@@ -679,40 +728,70 @@ section.slider {
             box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
             border-radius: 10px;
             overflow: hidden;
+            position: relative;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
             .thumbnail {
                 width: 100%;
                 overflow: hidden;
                 max-height: 160px;
-                @media (max-width: 575.98px) {
-                    max-height: 140px;
-                }
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    object-position: top;
                 }
-            }
-            .text {
-                padding: 10px;
-                @media (max-width: 575.98px) {
-                    padding: 8px;
-                }
-                p {
-                    font-size: 15px;
-                    text-align: center;
-                    padding: 10px;
-                    line-height: 22px;
-                    @media (max-width: 575.98px) {
-                        font-size: 13px;
-                    }
-                }
-                button {
+                .title {
                     padding: 10px;
                     @media (max-width: 575.98px) {
                         padding: 4px;
                     }
                     width: 100%;
                     color: white;
+                    display: block;
+                    font-size: 16px;
+                    padding: 4px 16px;
+                    margin: auto;
+                    text-align: center;
+                    text-decoration: none;
+                    background-color: $main-color;
+                    border: none;
+                    border-radius: 8px;
+                }
+            }
+            .text {
+                padding: 10px;
+                height: 50%;
+                justify-content: space-between;
+                display: flex;
+                flex-direction: column;
+                @media (max-width: 575.98px) {
+                    padding: 8px;
+                }
+                p {
+                    font-size: 14px;
+                    text-align: center;
+                    
+                    padding: 10px;
+                    line-height: 22px;
+                    @media (max-width: 575.98px) {
+                        font-size: 13px;
+                    }
+                }
+                a {
+                    padding: 10px;
+                    @media (max-width: 575.98px) {
+                        padding: 4px;
+                    }
+                    width: 100%;
+                    color: white;
+                    display: block;
+                    font-size: 16px;
+                    padding: 4px 16px;
+                    margin: auto;
+                    text-align: center;
+                    text-decoration: none;
                     background-color: $main-color;
                     border: none;
                     border-radius: 8px;
@@ -798,7 +877,7 @@ footer {
     }
 }
 
-.login-popup, .register-popup {
+.login-popup, .register-popup, .booking-popup, .success-booking-popup {
     position: fixed;
     top: 50%;
     left: 50%;

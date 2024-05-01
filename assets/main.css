@@ -450,9 +450,6 @@ section.slider .swiper-slide {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
 }
 section.slider .swiper-slide .thumbnail {
   width: 100%;
@@ -463,7 +460,6 @@ section.slider .swiper-slide .thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
 }
 section.slider .swiper-slide .thumbnail .title {
   position: absolute;
@@ -485,10 +481,6 @@ section.slider .swiper-slide .thumbnail .title {
 }
 section.slider .swiper-slide .text {
   padding: 10px;
-  height: 50%;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
 }
 section.slider .swiper-slide .text p {
   font-size: 14px;
@@ -496,24 +488,13 @@ section.slider .swiper-slide .text p {
   padding: 10px;
   line-height: 22px;
 }
-section.slider .swiper-slide .text a {
+section.slider .swiper-slide .text button {
   padding: 10px;
   width: 100%;
   color: white;
-  display: block;
-  font-size: 16px;
-  padding: 4px 16px;
-  margin: auto;
-  text-align: center;
-  text-decoration: none;
   background-color: #2b78df;
   border: none;
   border-radius: 8px;
-}
-@media (max-width: 575.98px) {
-  section.slider .swiper-slide .text a {
-    padding: 4px;
-  }
 }
 
 .ad {
@@ -574,22 +555,9 @@ section.slider .swiper-slide .text a {
     width: 100%;
   }
 }
-.doctor .container .image_wrapper .comfirm-booking {
-  margin: auto;
-  margin-top: auto;
-  display: block;
-  margin-top: 8px;
-  padding: 8px 32px;
-  background: #2b78df;
-  color: white;
-  font-weight: 700;
-  border: none;
-  border-radius: 10px;
-  width: 100%;
-}
 .doctor .container .image_wrapper .img {
   width: 100%;
-  min-height: 340px;
+  min-height: 400px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -816,9 +784,6 @@ section.slider .swiper-slide .text a {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
 }
 .doctors .doctors-parent .doctor-card .thumbnail {
   width: 100%;
@@ -829,33 +794,27 @@ section.slider .swiper-slide .text a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
 }
 .doctors .doctors-parent .doctor-card .thumbnail .title {
-  padding: 10px;
-  width: 100%;
+  position: absolute;
+  z-index: 9999;
+  top: 147.5px;
+  font-weight: 700 !important;
+  min-width: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f77896;
+  font-size: 12px;
+  padding: 2px 16px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
   color: white;
-  display: block;
-  font-size: 16px;
-  padding: 4px 16px;
-  margin: auto;
-  text-align: center;
-  text-decoration: none;
-  background-color: #2b78df;
-  border: none;
-  border-radius: 8px;
-}
-@media (max-width: 575.98px) {
-  .doctors .doctors-parent .doctor-card .thumbnail .title {
-    padding: 4px;
-  }
 }
 .doctors .doctors-parent .doctor-card .text {
   padding: 10px;
-  height: 50%;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
 }
 @media (max-width: 575.98px) {
   .doctors .doctors-parent .doctor-card .text {
@@ -863,7 +822,7 @@ section.slider .swiper-slide .text a {
   }
 }
 .doctors .doctors-parent .doctor-card .text p {
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
   padding: 10px;
   line-height: 22px;
@@ -873,22 +832,16 @@ section.slider .swiper-slide .text a {
     font-size: 13px;
   }
 }
-.doctors .doctors-parent .doctor-card .text a {
+.doctors .doctors-parent .doctor-card .text button {
   padding: 10px;
   width: 100%;
   color: white;
-  display: block;
-  font-size: 16px;
-  padding: 4px 16px;
-  margin: auto;
-  text-align: center;
-  text-decoration: none;
   background-color: #2b78df;
   border: none;
   border-radius: 8px;
 }
 @media (max-width: 575.98px) {
-  .doctors .doctors-parent .doctor-card .text a {
+  .doctors .doctors-parent .doctor-card .text button {
     padding: 4px;
   }
 }
@@ -960,7 +913,7 @@ footer svg {
   stroke: white;
 }
 
-.login-popup, .register-popup, .booking-popup, .success-booking-popup {
+.login-popup, .register-popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -975,12 +928,12 @@ footer svg {
   box-shadow: 1px 2px 11px 3px rgba(186, 186, 186, 0.2);
   display: none;
 }
-.login-popup h2, .register-popup h2, .booking-popup h2, .success-booking-popup h2 {
+.login-popup h2, .register-popup h2 {
   text-align: center;
   margin-bottom: 8px;
   color: #001635;
 }
-.login-popup input, .register-popup input, .booking-popup input, .success-booking-popup input {
+.login-popup input, .register-popup input {
   width: 100%;
   padding: 8px 16px;
   border: 1px solid #dadada;
@@ -991,7 +944,7 @@ footer svg {
   color: #001635;
   margin-bottom: 10px;
 }
-.login-popup .submit, .register-popup .submit, .booking-popup .submit, .success-booking-popup .submit {
+.login-popup .submit, .register-popup .submit {
   padding: 8px 16px;
   border-radius: 10px;
   background-color: #2b78df;
