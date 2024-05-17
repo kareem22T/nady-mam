@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/swiper.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Nady Mama</title>
+</head>
+
+<body class="ar">
+    <header>
+        <div class="container">
+            <div>
+                <a href="/"><img src="./assets/imgs/logo.jpg" alt="" class="logo"></a>
+                <div class="hide-content"></div>
+                <nav>
+                    <a href="/">الرئيسية</a>
+                    <a href="./doctors.html">الاطباء</a>
+                    <a href="./blog.html">المدونة</a>
+                    <a href="">من نحن</a>
+                    <a href="">اتصل بنا</a>
+                </nav>
+            </div>
+            <div class="more">
+                <!-- <div class="profile">
+                    <a href="">
+                        <span class="thumbnail">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                            <span class="notification">اشعار 2</span>
+                        </span>
+                        <span class="name">
+                            مرحبا, ماما ندي
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+                    </a>
+                </div> -->
+                <div class="auth-btns">
+                    <button class="login">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M21 12h-13l3 -3" />
+                            <path d="M11 15l-3 -3" />
+                        </svg>
+                        دخول</button>
+                    <button class="register">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        تسجيل</button>
+                </div>
+                <div class="show-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hide-content"></div>
+    <div class="register-popup">
+        <h2>انشاء حساب</h2>
+        <div class="input-group">
+            <input type="text" name="name" id="name" placeholder="الاسم">
+        </div>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور">
+        </div>
+        <button class="submit">تسجيل</button>
+    </div>
+
+    <div class="login-popup">
+        <h2>تسجيل الدخول</h2>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور">
+        </div>
+        <button class="submit">دخول</button>
+    </div>
+    <section class="post">
+        <div class="container">
+            <div class="card_wrapper">
+                <h1 class="title">أعراض اختلال الآنية (الاغتراب عن الواقع)</h1>
+                <div class="image_wrapper">
+                    <div class="img">
+                        <img src="./assets/imgs/52de4d60975205a752d0bd220e7d649b.jpg.webp" alt="">
+                    </div>
+                </div>
+                <div class="date" style="text-align: center;margin-bottom: 16px;color: gray;">تاريخ النشر 9 مايو 2024 | 5 دقيقة قراءة</div>
+                <div class="text_wrapper">
+                    نوضح فيما يلي أعراض اضطراب تبدد الشخصية والاغتراب عن الواقع:
+                    أعراض تبدد الشخصية
+                    <br>
+                    تتمحور أعراض اضطراب تبدد الشخصية حول عدم إلمام الفرد بذاته فيشعر بأنه انفصل عن جسده، وكأنما يشاهد
+                    جسده من جانب آخر، وقد يصف من مر بهذه الحالة بأنه مر بتجربة الخروج من الجسد. [1][4][5]
+                    <br>
+                    
+                    تتضمن أبرز أعراض اختلال الآنية في نوبات تبدد الشخصية ما يلي: [3][4][5][6]
+                    <br>
+                    
+                    الشعور بالانفصال عن الجسد أي إحساس الشخص بأنه خارج جسمه، فقد يشعر بأنه يحلق في الهواء وينظر إلى جسده
+                    من الأعلى، أو أنه يشاهده من بعيد في فيلم سينمائي.
+                    الإحساس بعدم الارتباط بالأفكار، حيث يشعر المريض بأن أفكاره الحالية ليست أفكاره الحقيقية ولا تنتمي
+                    إليه.
+                    <br>
+                    الشعور بالانفصال عن المشاعر وغياب القدرة على التعبير عنها.
+                    إحساس الشخص بأنه إنسان آلي، أو أنه لا يستطيع التحكم في أقواله وأفعاله.
+                    الإحساس بوجود تشوهات في شكل الجسم، فعلى سبيل المثال قد يشعر الشخص بأن أطرافه تدو أكبر أو أصغر من
+                    المعتاد، أو أن رأسه مملوء بالقطن.
+                    <br>
+                    الخدر العاطفي والشعور باللامبالاة.
+                    الخدر العقلي أو الجسدي ويظهر في صورة انخفاض الإحساس بعدة عوامل، مثل اللمس، أو الجوع.
+                    مشكلات في الذاكرة أو فجوات فيها، وفقدان الشعور بالعواطف المرتبطة بالذكريات.
+                    تشوه الإحساس بالزمان، فقد يشعر المصاب بأن الوقت يمضي ببطء شديد أو أنه يمر بسرعة كبيرة.
+                    
+                    <br>
+                    اقرأ أيضًا: أنواع الأمراض النفسية
+                    أعراض الاغتراب عن الواقع
+                    
+                    قد يعاني مصابو اختلال الآنية من الاغتراب أو الانفصال عن الواقع، حيث يشعر الفرد بأنه منفصل عن كل من
+                    حوله، وأن البيئة المحيطة به غير حقيقية، كما لو أن لوحًا زجاجيًا يفصل بينه وبين ما حوله. [4]
+                    <br>
+                    
+                    تشمل أعراض اختلال الآنية في نوبات الاغتراب عن الواقع الآتي: [4][7][8]
+                    <br>
+                    
+                    شعور الشخص بأنه يعيش في حلم وبأن ما يحيط به غير حقيقي، ويجد صعوبة في التعرف على من حوله.
+                    الشعور بالانفصال العاطفي عن الأهل والأصدقاء.
+                    رؤية الفرد للأشياء من حوله مختلفة في الشكل، أو الحجم، أو اللون.
+                    ظهور البيئة المحيطة ضبابية أو باهتة اللون، أو كرتونية، أو ثنائية الأبعاد مسطحة بلا عمق، وربما تظهر
+                    قريبة أو بعيدة جدًا.
+                    سماع الأصوات من حوله كأنها مكتومة أو مرتفعة.
+                    إحساس الفرد بأن ما يحيط به غريب وغير مألوف.
+                    فقدان الشعور بالوقت، إذ ينتاب الشخص شعور بأن الأحداث الأخيرة حدثت في الماضي، وأن الأشياء التي مر
+                    عليها وقت طويل حدثت البارحة.
+                    <br>
+                    
+                    قد تظهر أعراض اختلال الآنية الجسدية في صورة دوار أو تنميل، بالإضافة إلى ذلك قد يعاني المريض من القلق
+                    والذعر خوفًا من حدوث أعراض الانفصال عن الواقع. [5]
+                    ما الذي يحفز حدوث أعراض اختلال الآنية؟
+                    <br>
+                    
+                    قد يحدث اختلال الآنية نتيجة التعرض لصدمة نفسية، أو الضغوط النفسية الشديدة، أو القلق والاكتئاب، ويمكن
+                    لبعض العوامل أن تثير حدوث أعراض اختلال الآنية، منها: [1][2]
+                    
+                    <br>
+                    الحرمان من النوم.
+                    الإجهاد والتعب الشديد.
+                    الإفراط في شرب الكحول.
+                    تعاطي الحشيش أو الكيتامين.
+                    
+                    <br>
+                    جدير بالذكر أن أعراض اختلال الآنية يمكن أن تصاحب العديد من الاضطرابات النفسية، مثل اضطراب ما بعد
+                    الصدمة، واضطراب الهلع، والاكتئاب، والفصام، والوسواس القهري. [2]
+                    
+                    <br>
+                    اقرأ أيضًا: ما هي أعراض اضطراب ما بعد الصدمة؟
+                    نصائح للتعامل مع أعراض اختلال الآنية
+                    <br>
+                    
+                    هناك بعض الاستراتيجيات التي تساعد في التركيز على ما يحدث في الوقت الحاضر وتحفيز المشاعر للتغلب على
+                    أعراض اختلال الآنية عند حدوثها والعودة إلى الواقع، وتشمل: [4][9]
+                    <br>
+                    
+                    قرص الجلد في الجزء الخلفي من اليد.
+                    وضع شيء بارد أو دافئ على اليد.
+                    التدقيق في الأشياء الموجودة في الغرفة أو البيئة المحيطة، وسرد أسمائها بصوت مرتفع، أو ذكر ألوانها، أو
+                    حتى عدها.
+                    <br>
+                    الجلوس على الأرض ولمس الأشياء المحيطة وتحسس ملمسها.
+                    محاولة الوقوف في مكان تصل إليه أشعة الشمس والتركيز على الشعور بدفئها وضوءها عند ملامسة الجسم.
+                    محاولة شم أي رائحة عطرية.
+                    التركيز على الأصوات المحيطة، مثل صوت العصافير أو السيارات.
+                    إغماض العينين ومحاولة استنشاق هواء نقي.
+                    التنفس ببطء وعمق والتركيز على الهواء وهو يدخل إلى الرئة ويخرج منها.
+                    محاولة التواصل مع أحد أفراد الأسرة أو صديق ومواصلة التحدث معه خلال فترة النوبة.
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slider">
+        <div class="container">
+            <div class="head">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heartbeat" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" />
+                        <path d="M3 13h2l2 3l2 -6l1 3h3" />
+                    </svg>
+                    افضل اطباء الاطفال
+                </h2>
+                <a href="">عرض المزيد</a>
+            </div>
+            <div class="slider-parent">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/1- Dr. Adel Awad El Hosainy.jpg" alt="">
+                                <span class="title">
+                                    استاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور عادل عواد الحسيني
+                                    </strong>
+                                    <br>
+                                    امراض دم اطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/2- Dr. Rasha Abdel Salam.jpg" alt="">
+                                <span class="title">
+                                    استشارى
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتورة رشا عبد العال
+                                    </strong>
+                                    <br>
+                                    صدر و حساسية اطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/3- DR. Mostafa El Abbasy.jpg" alt="">
+                                <span class="title">
+                                    اخصائي
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور مصطفي العباسي
+                                    </strong>
+                                    <br>
+                                    غدد صماء و سكر أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/4- Dr. El Saady Abd El Razikdy Abd El-Razik.jpg" alt="">
+                                <span class="title">
+                                    أستاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور السعدي عبد الرازق
+                                    </strong>
+                                    <br>
+                                    استاذ قلب الأطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/5- Dr. Thabet Abd El-Wareth.jpg" alt="">
+                                <span class="title">
+                                    إستشاري
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور ثابت عبد الوارث
+                                    </strong>
+                                    <br>
+                                    كلى أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-square-rounded-chevrons-right" width="44" height="44"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 9l3 3l-3 3" />
+                            <path d="M13 9l3 3l-3 3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-square-rounded-chevrons-left" width="44" height="44"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 15l-3 -3l3 -3" />
+                            <path d="M11 15l-3 -3l3 -3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        </svg>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ado-1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ad-2.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        كل الحفوق محفوظة لدي نادي ماما <svg xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+            <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173" />
+        </svg> 2023
+    </footer>
+
+    <script src="./assets/js/swiper.js"></script>
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 40,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                550: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                767: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                992: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                },
+                1199: {
+                    slidesPerView: 5,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    </script>
+    <script>
+        var swiper = new Swiper(".secSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 40,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                550: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                767: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                992: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".hide-content").on("click", function (e) {
+                e.preventDefault()
+                $(".login-popup").fadeOut()
+                $(".booking-popup").fadeOut()
+                $(".register-popup").fadeOut()
+                $("nav, .hide-content").addClass("animate__slideOutRight").fadeOut()
+                $("nav, .hide-content").removeClass("animate__slideInRight")
+            })
+            $(".show-menu").on("click", function (e) {
+                e.preventDefault()
+                $(".login-popup").fadeOut()
+                $(".register-popup").fadeOut()
+                $("nav, .hide-content").addClass("animate__slideInRight").fadeIn()
+                $("nav, .hide-content").removeClass("animate__slideOutRight")
+            })
+        });
+        $(".login").on("click", function () {
+            $(".login-popup").fadeIn()
+            $(".hide-content").fadeIn()
+        })
+        $(".comfirm-booking").on("click", function () {
+            $(".booking-popup").fadeIn()
+            $(".hide-content").fadeIn()
+        })
+        $(".book").on("click", function () {
+            $(".success-booking-popup").fadeIn()
+            $(".booking-popup").fadeOut()
+            $(".hide-content").fadeIn()
+        })
+        $(".close-success").on("click", function () {
+            $(".success-booking-popup").fadeOut()
+            $(".booking-popup").fadeOut()
+            $(".hide-content").fadeOut()
+        })
+        $(".register").on("click", function () {
+            $(".register-popup").fadeIn()
+            $(".hide-content").fadeIn()
+        })
+    </script>
+</body>
+
+</html>
