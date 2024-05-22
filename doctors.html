@@ -16,9 +16,83 @@
     <link rel="stylesheet" href="./assets/css/swiper.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <title>Nady Mama</title>
+    <style>
+        .loader {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999999;
+            background: #ffffff !important;
+            backdrop-filter: blur(1px);
+            display: none;
+
+        }
+
+        .custom-loader {
+            --d: 22px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            color: #2b78df;
+            box-shadow:
+                calc(1*var(--d)) calc(0*var(--d)) 0 0,
+                calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+                calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+                calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+                calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+                calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+                calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+            animation: s7 1s infinite steps(8);
+        }
+
+        @keyframes s7 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        #errors {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            max-width: calc(100% - 1.25rem * 2);
+            gap: 1rem;
+            z-index: 99999999999999999999;
+
+        }
+
+        #errors>* {
+            width: 100%;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        #errors .error {
+            background: #e41749;
+        }
+
+        #errors .success {
+            background: #12c99b;
+        }
+    </style>
 </head>
 
 <body class="ar">
+    <div class="loader" style="background-color: #fff;">
+        <div class="custom-loader"></div>
+    </div>
+    <div id="errors"></div>
+
     <header>
         <div class="container">
             <div>
@@ -33,26 +107,35 @@
                 </nav>
             </div>
             <div class="more">
-                <!-- <div class="profile">
-                    <a href="">
+                <div class="profile" v-if="user" style="position: relative;">
+                    <a href="" @click.prevent="showMorePopUp = !showMorePopUp">
                         <span class="thumbnail">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                             </svg>
-                            <span class="notification">اشعار 2</span>
+                            <!-- <span class="notification">اشعار 2</span> -->
                         </span>
                         <span class="name">
-                            مرحبا, ماما ندي
+                            مرحبا, {{ user.name}}
                         </span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down"
+                            width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M6 9l6 6l6 -6" />
                         </svg>
                     </a>
-                </div> -->
-                <div class="auth-btns">
+                    <div class="more-pop" v-if="showMorePopUp"
+                        style="position: absolute;top: 110%;z-index: 9999;background: white;width: 100%;padding: 8px 16px;border-radius: 4px;border: 1px solid #121a20;">
+                        <a href="">الحساب</a>
+                        <a href="" @click.prevent="logout()">تسجيل الخروج</a>
+                    </div>
+                </div>
+                <div class="auth-btns" v-if="!user">
                     <button class="login">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="18"
                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
@@ -91,26 +174,33 @@
     <div class="register-popup">
         <h2>انشاء حساب</h2>
         <div class="input-group">
-            <input type="text" name="name" id="name" placeholder="الاسم">
+            <input type="text" name="name" id="name" placeholder="الاسم" v-model="name">
         </div>
         <div class="input-group">
-            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+            <input type="emaill" name="email" id="email" placeholder="البريد الالكتروني" v-model="email">
         </div>
         <div class="input-group">
-            <input type="password" name="password" id="password" placeholder="كلمة المرور">
+            <input type="text" name="phone" id="phone" placeholder="رقم الهاتف" v-model="phone">
         </div>
-        <button class="submit">تسجيل</button>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="password">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password_confirmation" id="password_confirmation"
+                placeholder="تاكيد كلمة المرور المرور" v-model="password_confirmation">
+        </div>
+        <button class="submit" @click="register(name, email, phone, password, password_confirmation)">تسجيل</button>
     </div>
 
     <div class="login-popup">
         <h2>تسجيل الدخول</h2>
         <div class="input-group">
-            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني" v-model="login_email">
         </div>
         <div class="input-group">
-            <input type="password" name="password" id="password" placeholder="كلمة المرور">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="login_password">
         </div>
-        <button class="submit">دخول</button>
+        <button class="submit" @click="login(this.login_email, this.login_password)">دخول</button>
     </div>
 
     <section class="doctors">
@@ -504,34 +594,13 @@
         </svg> 2023
     </footer>
 
+    <script src="./assets/js/swiper.js"></script>
     <script src="./assets/js/jquery.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(".hide-content").on("click", function (e) {
-                e.preventDefault()
-                $(".login-popup").fadeOut()
-                $(".register-popup").fadeOut()
-                $("nav, .hide-content").addClass("animate__slideOutRight").fadeOut()
-                $("nav, .hide-content").removeClass("animate__slideInRight")
-            })
-            $(".show-menu").on("click", function (e) {
-                e.preventDefault()
-                $(".login-popup").fadeOut()
-                $(".register-popup").fadeOut()
-                $("nav, .hide-content").addClass("animate__slideInRight").fadeIn()
-                $("nav, .hide-content").removeClass("animate__slideOutRight")
-            })
-        });
-        $(".login").on("click", function () {
-            $(".login-popup").fadeIn()
-            $(".hide-content").fadeIn()
-        })
-        $(".register").on("click", function () {
-            $(".register-popup").fadeIn()
-            $(".hide-content").fadeIn()
-        })
-    </script>
+    <script src="./assets/js/swiperListerner.js"></script>
+    <script src="assets/js/listerners.js"></script>
+    <script src="assets/js/axios.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/auth.js"></script>
 </body>
 
 </html>
