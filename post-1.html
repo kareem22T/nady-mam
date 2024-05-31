@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/swiper.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Nady Mama</title>
+    <style>
+        .loader {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999999;
+            background: #ffffff !important;
+            backdrop-filter: blur(1px);
+            display: none;
+
+        }
+        img {
+            max-width: 800px;
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            margin: 16px auto;
+        }
+        .custom-loader {
+            --d: 22px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            color: #2b78df;
+            box-shadow:
+                calc(1*var(--d)) calc(0*var(--d)) 0 0,
+                calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+                calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+                calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+                calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+                calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+                calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+            animation: s7 1s infinite steps(8);
+        }
+
+        @keyframes s7 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        #errors {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            max-width: calc(100% - 1.25rem * 2);
+            gap: 1rem;
+            z-index: 99999999999999999999;
+
+        }
+
+        #errors>* {
+            width: 100%;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        #errors .error {
+            background: #e41749;
+        }
+
+        #errors .success {
+            background: #12c99b;
+        }
+    </style>
+</head>
+
+<body class="ar">
+    <div class="loader" style="background-color: #fff;">
+        <div class="custom-loader"></div>
+    </div>
+    <div id="errors"></div>
+
+    <header>
+        <div class="container">
+            <div>
+                <a href="/"><img src="./assets/imgs/logo.jpg" alt="" class="logo"></a>
+                <div class="hide-content"></div>
+                <nav>
+                    <a href="/">الرئيسية</a>
+                    <a href="./doctors.html">الاطباء</a>
+                    <a href="./blog.html">المدونة</a>
+                    <a href="">من نحن</a>
+                    <a href="">اتصل بنا</a>
+                </nav>
+            </div>
+            <div class="more">
+                <div class="profile" v-if="user" style="position: relative;">
+                    <a href="" @click.prevent="showMorePopUp = !showMorePopUp">
+                        <span class="thumbnail">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                            <!-- <span class="notification">اشعار 2</span> -->
+                        </span>
+                        <span class="name">
+                            مرحبا, {{ user.name}}
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down"
+                            width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+                    </a>
+                    <div class="more-pop" v-if="showMorePopUp"
+                        style="position: absolute;top: 110%;z-index: 9999;background: white;width: 100%;padding: 8px 16px;border-radius: 4px;border: 1px solid #121a20;">
+                        <a href="">الحساب</a>
+                        <a href="" @click.prevent="logout()">تسجيل الخروج</a>
+                    </div>
+                </div>
+                <div class="auth-btns" v-if="!user">
+                    <button class="login">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M21 12h-13l3 -3" />
+                            <path d="M11 15l-3 -3" />
+                        </svg>
+                        دخول</button>
+                    <button class="register">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        تسجيل</button>
+                </div>
+                <div class="show-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hide-content"></div>
+    <div class="register-popup">
+        <h2>انشاء حساب</h2>
+        <div class="input-group">
+            <input type="text" name="name" id="name" placeholder="الاسم" v-model="name">
+        </div>
+        <div class="input-group">
+            <input type="emaill" name="email" id="email" placeholder="البريد الالكتروني" v-model="email">
+        </div>
+        <div class="input-group">
+            <input type="text" name="phone" id="phone" placeholder="رقم الهاتف" v-model="phone">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="password">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password_confirmation" id="password_confirmation"
+                placeholder="تاكيد كلمة المرور المرور" v-model="password_confirmation">
+        </div>
+        <button class="submit" @click="register(name, email, phone, password, password_confirmation)">تسجيل</button>
+    </div>
+
+    <div class="login-popup">
+        <h2>تسجيل الدخول</h2>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني" v-model="login_email">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="login_password">
+        </div>
+        <button class="submit" @click="login(this.login_email, this.login_password)">دخول</button>
+    </div>
+    <section class="post">
+        <div class="container">
+            <div class="card_wrapper">
+                <h1 class="title">الرضاعة الطبيعية</h1>
+                <div class="date" style="text-align: center;margin-bottom: 16px;color: gray;">تاريخ النشر 9 مايو 2024</div>
+                <div class="text_wrapper">
+                    الرضاعة هي احدى اروع لحظات التواصل بين الام والرضيع، تكمن فائدة الرضاعة الطبيعية في كونها تولد علاقة حميمة بين الام وطفلها، هذه العلاقة تدل على مدى الحب والتفاني اللذان يستمران مدى الحياة بين الام وطفلها، فالرضاعة تمنح الطفل الحنان والدفيء والشعور بالحماية التي يحتاجها من الام، كذلك فهي تزوده بمواد غذائية، لن يستطيع الحصول عليها من أي طعام أخر اضافة الى فوائد عدة، تعود على الطرفين، لذا تنصح منظمة الصحة العالمية بان يبقى حليب الام هو مصدر الغذاء الرئيسي للطفل حتى إتمام الشهرالسادس، وبتغذية تكميلية   حتى العام الثاني من عمر الطفل.                
+                    <img src="./assets/imgs/مقالة 1 صورة 2.png" alt="">
+                    • لبن الأم مصدر كامل لجميع العناصر الغذائية الضرورية للطفل منذ ولادته ويعد مصدراً كافياً حتى عمر ستة شهور. • لبن الأم أنسب غذاء للطفل لأن نظافته مضمونة (لا يتم تحضيره) ودرجة حرارته مناسبة للطفل وتتغير طبقاً لفصول السنة.
+                    <br>
+                    • إدرار اللبن يزيد مع الوقت و يتم تحفيزه عن طريق مص الطفل لصدر الأم.
+                    <br>
+                    • الرضاعة الطبيعية تقلل من حدوث النزلات المعوية وإلتهابات الجهاز التنفسى والحساسية التي تزيد نسبتها بين الأطفال اللذين يرضعون
+                    صناعيا.
+                    <br>
+                    • الرضاعة الطبيعية تخلق اتصالا وثيقا وتدعم علاقة الحب بين الطفل و أمه.
+                    <br>
+                    • تساعد علي عودة الرحم لحالته الطبيعية.
+                    <br>
+                    • تساعد في تقليل النزيف الذي يحدث بعد الولادة.
+                    <br>
+                    • تقلل من احتقان وتورم الثدي وتمنع المضاعفات المترتبة على ذلك.
+                    <br>
+                    • تساعد المرأة في المباعدة بين الحمل والذي يليه حفاظاًعلى صحتها.
+                    <br>
+                    • تقلل من احتمال الإصابة بالأورام السرطانية بالثدى والمبيض وعنق الرحم.
+                    <br>
+                    • تساعد علي عودة الرحم لحالته الطبيعية.
+                    <br>
+                    <img src="./assets/imgs/مقالة 1 صورة 3.png" alt="">
+                    • تساعد في تقليل النزيف الذي يحدث بعد الولادة.
+                    <br>
+                    • تقلل من إحتقان وتورم الثدي وتمنع المضاعفات المترتبة علي ذلك.
+                    <br>
+                    • تساعد المرأة في المباعدة بين الحمل والذي يليه حفاظاً على صحتها.
+                    <br>
+                    • تقلل من احتمال الإصابة بالأورام السرطانية بالثدى والمبيض وعنق الرحم.
+                    <br>
+                    • توفر الوقت للأم لرعاية الأسرة بأكملها.
+                    <br>
+                    • توفير المال حيث أن تكلفتها أقل كثيرا من الرضاعة الصناعية.
+                    <br>
+                    • تقليل تكلفة الرعاية الصحية للرضيع.
+                    <br>
+                    • تقليل تكلفة الرعاية الصحية. 
+                    <br>
+                    • تحسين صحة الطفل والمجتمع.
+                    <br>
+                    • وسيلة طبيعية من وسائل تنظيم الأسرة.
+                    <br>
+                    • تقليل الدعم الحكومى للألبان الصناعيه
+                    <img src="./assets/imgs/مقالة 1 صورة 3.png" alt="">
+                    •	ينبغي الاقتصار على الرضاعة الطبيعية لتغذية الرضع أى تغذيتهم بلبن الثدي فقط، طيلة الأشهر الستة الأولى من حياتهم لضمان المستوى الأمثل من النمووالنماء والصحة. ويُعرف
+                    <br>
+                    •	مصطلح الاقتصار على الرضاعة الطبيعية بالامتناع عن إعطاء الرضع أية أغذية أو مشروبات أخرى حتى الماء - باستثناء لبن الثدى. غير أن ذلك المفهوم يجيز إعطاء الرضع القطرات والمحاليل (الفيتامينات والمعادن والأدوية). 
+                    <br>
+                    •	والجدير بالذكر أن لبن الثدي هو الغذاء الأمثل لنمو الرضع ونمائهم بطريقة صحية؛ كما أنه عنصر أساسي من العملية الإنجابية له انعكاسات هامة على صحة الأمهات. وتوصى منظمة الصحة
+                    <br>
+                    •	وتوصى منظمة الصحة العالمية بضرورة البدء بإعطاء الرضع أغذية مكملة إضافة إلى لبن الثدي عند بلوغهم الشهر السادش ١٨٠ يوما.
+                    <br>
+                    •	وينبغي أن تكون تلك الأغذية ملائمة، بمعنى أنه ينبغي أن توفر كمية كافية من الطاقة والبروتينات والعناصر الزهيدة المقدار كي تلبي حتياجات
+                    <br>
+                    •	الطفل الغذائية وتضمن نموه بشكل جيد. وينبغي تحضير تلك الأغذية وإعطائها بطرق. مأمونة للحد من مخاطر التلوث. ويقتضي إطعام صغار الرضع رعاية نشطة وتحفيز الرضيع لتشجيعه على الأكل.
+                    <br>
+                    
+                    ويُعد الانتقال من مرحلة الاقتصار على الرضاعة الطبيعية إلى مرحلة الاستخدام الكامل لأغذية الأسرة من الفترات التي يكون فيها الطفل سريع التأثر. فتلك هي الفترة التي يعاني فيها الكثير من الرضع من سوء التغذية، وهي التي تسهم كثيراً في زيادة انتشار سوء التغذية لدى الأطفال دون سن الخامسة في جميع أنحاء العالم. وعليه فإن من الضروري إعطاء الأطفال أغذية مكملة مناسبة وكافية لضمان الانتقال، على نحو سليم، من مرحلة لبن الثدى إلى مرحلة الاستخدام الكامل لأغذية الأسرة.
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slider">
+        <div class="container">
+            <div class="head">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heartbeat" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" />
+                        <path d="M3 13h2l2 3l2 -6l1 3h3" />
+                    </svg>
+                    افضل اطباء الاطفال
+                </h2>
+                <a href="">عرض المزيد</a>
+            </div>
+            <div class="slider-parent">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/1- Dr. Adel Awad El Hosainy.jpg" alt="">
+                                <span class="title">
+                                    استاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور عادل عواد الحسيني
+                                    </strong>
+                                    <br>
+                                    امراض دم اطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/2- Dr. Rasha Abdel Salam.jpg" alt="">
+                                <span class="title">
+                                    استشارى
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتورة رشا عبد العال
+                                    </strong>
+                                    <br>
+                                    صدر و حساسية اطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/3- DR. Mostafa El Abbasy.jpg" alt="">
+                                <span class="title">
+                                    اخصائي
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور مصطفي العباسي
+                                    </strong>
+                                    <br>
+                                    غدد صماء و سكر أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/4- Dr. El Saady Abd El Razikdy Abd El-Razik.jpg" alt="">
+                                <span class="title">
+                                    أستاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور السعدي عبد الرازق
+                                    </strong>
+                                    <br>
+                                    استاذ قلب الأطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/5- Dr. Thabet Abd El-Wareth.jpg" alt="">
+                                <span class="title">
+                                    إستشاري
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور ثابت عبد الوارث
+                                    </strong>
+                                    <br>
+                                    كلى أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-square-rounded-chevrons-right" width="44" height="44"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 9l3 3l-3 3" />
+                            <path d="M13 9l3 3l-3 3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-square-rounded-chevrons-left" width="44" height="44"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 15l-3 -3l3 -3" />
+                            <path d="M11 15l-3 -3l3 -3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        </svg>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ado-1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ad-2.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        كل الحفوق محفوظة لدي نادي ماما <svg xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+            <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173" />
+        </svg> 2023
+    </footer>
+
+    <script src="./assets/js/swiper.js"></script>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/swiperListerner.js"></script>
+    <script src="assets/js/listerners.js"></script>
+    <script src="assets/js/axios.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</body>
+
+</html>
