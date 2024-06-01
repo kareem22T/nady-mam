@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/swiper.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Nady Mama</title>
+    <style>
+        .loader {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999999;
+            background: #ffffff !important;
+            backdrop-filter: blur(1px);
+            display: none;
+
+        }
+
+        .custom-loader {
+            --d: 22px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            color: #2b78df;
+            box-shadow:
+                calc(1*var(--d)) calc(0*var(--d)) 0 0,
+                calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+                calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+                calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+                calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+                calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+                calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+            animation: s7 1s infinite steps(8);
+        }
+
+        @keyframes s7 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        #errors {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            max-width: calc(100% - 1.25rem * 2);
+            gap: 1rem;
+            z-index: 99999999999999999999;
+
+        }
+
+        #errors>* {
+            width: 100%;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        #errors .error {
+            background: #e41749;
+        }
+
+        #errors .success {
+            background: #12c99b;
+        }
+    </style>
+</head>
+
+<body class="ar">
+    <div class="loader" style="background-color: #fff;">
+        <div class="custom-loader"></div>
+    </div>
+    <div id="errors"></div>
+
+    <header>
+        <div class="container">
+            <div>
+                <a href="/"><img src="./assets/imgs/logo.jpg" alt="" class="logo"></a>
+                <div class="hide-content"></div>
+                <nav>
+                    <a href="/">الرئيسية</a>
+                    <a href="./doctors.html">الاطباء</a>
+                    <a href="./blog.html">المدونة</a>
+                    <a href="">من نحن</a>
+                    <a href="">اتصل بنا</a>
+                </nav>
+            </div>
+            <div class="more">
+                <div class="profile" v-if="user" style="position: relative;">
+                    <a href="" @click.prevent="showMorePopUp = !showMorePopUp">
+                        <span class="thumbnail">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                            <!-- <span class="notification">اشعار 2</span> -->
+                        </span>
+                        <span class="name">
+                            مرحبا, {{ user.name}}
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down"
+                            width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6 9l6 6l6 -6" />
+                        </svg>
+                    </a>
+                    <div class="more-pop" v-if="showMorePopUp"
+                        style="position: absolute;top: 110%;z-index: 9999;background: white;width: 100%;padding: 8px 16px;border-radius: 4px;border: 1px solid #121a20;">
+                        <a href="">الحساب</a>
+                        <a href="" @click.prevent="logout()">تسجيل الخروج</a>
+                    </div>
+                </div>
+                <div class="auth-btns" v-if="!user">
+                    <button class="login">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M21 12h-13l3 -3" />
+                            <path d="M11 15l-3 -3" />
+                        </svg>
+                        دخول</button>
+                    <button class="register">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="18"
+                            height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                        تسجيل</button>
+                </div>
+                <div class="show-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 6l16 0" />
+                        <path d="M4 12l16 0" />
+                        <path d="M4 18l16 0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hide-content"></div>
+    <div class="register-popup">
+        <h2>انشاء حساب</h2>
+        <div class="input-group">
+            <input type="text" name="name" id="name" placeholder="الاسم" v-model="name">
+        </div>
+        <div class="input-group">
+            <input type="emaill" name="email" id="email" placeholder="البريد الالكتروني" v-model="email">
+        </div>
+        <div class="input-group">
+            <input type="text" name="phone" id="phone" placeholder="رقم الهاتف" v-model="phone">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="password">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password_confirmation" id="password_confirmation"
+                placeholder="تاكيد كلمة المرور المرور" v-model="password_confirmation">
+        </div>
+        <button class="submit" @click="register(name, email, phone, password, password_confirmation)">تسجيل</button>
+    </div>
+
+    <div class="login-popup">
+        <h2>تسجيل الدخول</h2>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني" v-model="login_email">
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="كلمة المرور" v-model="login_password">
+        </div>
+        <button class="submit" @click="login(this.login_email, this.login_password)">دخول</button>
+    </div>
+    
+    <div class="booking-popup">
+        <h2>بيانات الحجز</h2>
+        <div class="input-group">
+            <input type="text" name="name" id="name" placeholder="الاسم">
+        </div>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="البريد الالكتروني">
+        </div>
+        <div class="input-group">
+            <input type="text" name="phone" id="phone" placeholder="رقم الهاتف">
+        </div>
+        <button class="book submit">حجز</button>
+    </div>
+    <div class="success-booking-popup">
+        <h1 style="font-size: 21px;text-align: center;">تم الحجز بنجاح سوف نتواصل معك للتاكيد</h1>
+        <svg style="width: 80px;height: 80px;padding: 8px;border: 2px solid #8dc645;border-radius: 50%;margin: 16px auto;display: block;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#8dc645" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l5 5l10 -10" />
+        </svg>
+        <button class="close-success submit">اغلاق</button>
+    </div>
+    <section class="doctor">
+        <div class="container">
+            <div class="card_wrapper">
+                <div class="image_wrapper">
+                    <div class="img">
+                        <img src="./assets/imgs/15-Dr. Abeer Esmail.jpg" alt="">
+                        <div class="details">
+                            <h2 class="name">
+                                دكتورة عبير اسماعيل
+                            </h2>
+                            <p>
+                                صدر و حساسية أطفال
+                            </p>
+                            <p>
+                                أستاذ  
+                            </p>
+                            <div class="social">
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#3b5998" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z" stroke-width="0" fill="currentColor" />
+                                    </svg>
+                                </a>
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#666668" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M9 15l6 -6" />
+                                        <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                                        <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                                      </svg>
+                                </a>
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#c65090" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                                        <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                        <path d="M16.5 7.5l0 .01" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>ما هو تقيمك للطبيب؟</h2>
+                    <div class="rate">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" />
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" />
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" />
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" />
+                        </svg> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" />
+                        </svg> 
+                    </div>
+                    <p>متوسط التقيم: 5/5. مرات التقيم: 4</p>
+                    <button class="comfirm-booking">اتمام الحجز</button>
+                </div>
+                <div class="text_wrapper">
+                    <p class="desc">
+                        استشاري أول طب الاطفال وحديثي الولاده والحساسيه والربو ماجيستير و دكتوراه القصر العيني جامعه القاهره ،زماله الكليه الملكيه لطب الاطفال -لندن - انجلترا خبره في انجلترا و السعوديه
+                    <p class="price">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coins" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#5f6264" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" />
+                            <path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" />
+                            <path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" />
+                            <path d="M3 6v10c0 .888 .772 1.45 2 2" />
+                            <path d="M3 11c0 .888 .772 1.45 2 2" />
+                        </svg>
+                        سعر الكشف: 500 جنيه | <span>سعر ماما: 480 جنيه</span>
+                    </p>
+                    <p class="price">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-3" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#5f6264" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                            <path d="M12 12h3.5" />
+                            <path d="M12 7v5" />
+                          </svg>
+                          مدة الانتظار:
+                          الدخول باولوية الحضور 
+                    </p>
+                    <p class="phone">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone-call" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#5f6264" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+                            <path d="M15 7a2 2 0 0 1 2 2" />
+                            <path d="M15 3a6 6 0 0 1 6 6" />
+                        </svg>
+                        01550552371 - 01550552371 - 01550552371 - 01550552371
+                    </p>
+                    <div class="host">
+                        <span>حجز موعد مع الطبيب</span>
+                        قم باختيار الموعد المناسب والاتصال بالطبيب لتحديد الموعد قبل الحضور مع العلم ان المنصة
+                        غير مسؤلة عن المواعيد داخل العيادة أو اسبقية الحضور او نظام الدكتور في تقديم الخدمة
+                        <div class="slots">
+                            <div class="slot">
+                                <input type="checkbox" name="slot_time" id="slot_time_1" checked>
+                                <label for="slot_time_1">السبت 22 فبراير</label>
+                            </div>
+                            <div class="slot">
+                                <input type="checkbox" name="slot_time" id="slot_time_2">
+                                <label for="slot_time_2">السبت 23 فبراير</label>
+                            </div>
+                            <div class="slot">
+                                <input type="checkbox" name="slot_time" id="slot_time_3">
+                                <label for="slot_time_3">السبت 24 فبراير</label>
+                            </div>
+                            <div class="slot">
+                                <input type="checkbox" name="slot_time" id="slot_time_4">
+                                <label for="slot_time_4">السبت 25 فبراير</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slider">
+        <div class="container">
+            <div class="head">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heartbeat" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" />
+                        <path d="M3 13h2l2 3l2 -6l1 3h3" />
+                      </svg>
+                      افضل اطباء الاطفال
+                </h2>
+                <a href="">عرض المزيد</a>
+            </div>
+            <div class="slider-parent">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/1- Dr. Adel Awad El Hosainy.jpg" alt="">
+                                <span class="title">
+                                    استاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور عادل عواد الحسيني
+                                    </strong>
+                                <br>
+                                امراض دم اطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>        
+                      </div>
+                      <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/2- Dr. Rasha Abdel Salam.jpg" alt="">
+                                <span class="title">
+                                    استشارى
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتورة رشا عبد العال
+                                    </strong>
+                                <br>
+                                صدر و حساسية اطفال
+                            </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>        
+                      </div>
+                      <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/3- DR. Mostafa El Abbasy.jpg" alt="">
+                                <span class="title">
+                                    اخصائي
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور مصطفي العباسي
+                                    </strong>
+                                <br>
+                                غدد صماء و سكر أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>        
+                      </div>
+                      <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/4- Dr. El Saady Abd El Razikdy Abd El-Razik.jpg" alt="">
+                                <span class="title">
+                                    أستاذ
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور السعدي عبد الرازق
+                                    </strong>
+                                <br>
+                                استاذ قلب الأطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>        
+                      </div>
+                      <div class="swiper-slide">
+                            <div class="thumbnail">
+                                <img src="./assets/imgs/5- Dr. Thabet Abd El-Wareth.jpg" alt="">
+                                <span class="title">
+                                    إستشاري
+                                </span>
+                            </div>
+                            <div class="text">
+                                <p>
+                                    <strong>
+                                        دكتور ثابت عبد الوارث
+                                    </strong>
+                                <br>
+                                    كلى أطفال
+                                </p>
+                                <a href="/doctor.html">عرض التفاصيل</a>
+                            </div>        
+                      </div>
+                    </div>
+                    <div class="swiper-button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-chevrons-right" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M9 9l3 3l-3 3" />
+                            <path d="M13 9l3 3l-3 3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                          </svg>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-chevrons-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M15 15l-3 -3l3 -3" />
+                            <path d="M11 15l-3 -3l3 -3" />
+                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                          </svg>
+                    </div>                
+                    <div class="swiper-pagination"></div>
+                  </div>                
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ado-1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ad-2.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        كل الحفوق محفوظة لدي نادي ماما <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+            <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173" />
+          </svg> 2023
+    </footer>
+
+    <script src="./assets/js/swiper.js"></script>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/swiperListerner.js"></script>
+    <script src="assets/js/listerners.js"></script>
+    <script src="assets/js/axios.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/auth.js"></script>
+        
+</body>
+</html>
