@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./assets/css/swiper.css">
     <link rel="stylesheet" href="./assets/css/main.css">
@@ -202,100 +198,37 @@
         </div>
         <button class="submit" @click="login(this.login_email, this.login_password)">دخول</button>
     </div>
-
-    <section class="posts">
+    
+    <section class="doctor">
         <div class="container">
-            <div class="head">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heartbeat" width="44"
-                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                            d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" />
-                        <path d="M3 13h2l2 3l2 -6l1 3h3" />
-                    </svg>
-                    افضل اطباء الاطفال
-                </h2>
-                <a href="">الاعلى تقيما</a>
+            <div class="card_wrapper" style="font-size: 22px;margin-bottom: 100px;">
+                منصة نادي ماما هي منصة الكترونية طبية تحت اشراف الأكاديمية المصرية لطب الأطفال
             </div>
-            <div class="posts-parent">
-                <a href="./post-1.html" class="post-card">
-                    <div class="thumbnail">
-                        <img src="./assets/imgs/مقالة 1 صورة 1.png" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>
-                            الرضاعة الطبيعية
-                        </h3>
-                        <p>
-                            الرضاعة هي احدى اروع لحظات التواصل بين الام والرضيع، تكمن فائدة الرضاعة الطبيعية في كونها تولد علاقة حميمة بين الام وطفلها، ....                                </p>
-                    </div>
-                </a>
-                <a href="./post-2.html" class="post-card">
-                    <div class="thumbnail">
-                        <img src="./assets/imgs/مقالة 2 صورة 1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>
-                            الرضاعة الطبيعية للوقاية من الامراض
-                        </h3>
-                        <p>
-                            الخطر النسبي للوفيات نتيجة الإصابة بأمراض معدية بين الأطفال الذين لم يحصلوا على رضاعة طبيعية. إن اتخاذ قرار بشأن ...
-                        </p>
-                    </div>
-                </a>
-                <a href="./post-3.html" class="post-card">
-                    <div class="thumbnail">
-                        <img src="./assets/imgs/مقالة 3 صورة 1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>
-                            الرضاعة الطبيعية وفوائدها للأم و الطفل
-                        </h3>
-                        <p>
-                            الطفل تبلغ أقصاها في ذلك الوقت كما أن الرضاعة تساعد على سرعة عودة الرحم إلى وضعه الطبيعي وتقلل من النزيف بإذن الله.
-                        </p>
-                    </div>
-                </a>
-                <a href="./post-4.html" class="post-card">
-                    <div class="thumbnail">
-                        <img src="./assets/imgs/مقالة 4 صورة 1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>
-                            ممارسة الرياضة
-                        </h3>
-                        <p>
-                            إن ممارسة الطفل للرياضة تعد من الأمور الهامة التي ستعود عليه بالكثير من الفوائد ، فمشاركة الطفل فى الرياضات ...
-                        </p>
-                    </div>
-                </a>
-                <a href="./post-5.html" class="post-card">
-                    <div class="thumbnail">
-                        <img src="./assets/imgs/مقالة 5 صورة 1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>
-                            العاب مفيدة للأطفال
-                        </h3>
-                        <p>
-                            تحتاج الأم أحياناً إلى مدة قصيرة من الوقت ولو لمدة  نصف ساعة، تستمتع بها بانشغال طفلها الصغير بنشاط يغنيه ويجنبه ...
-                        </p>
-                    </div>
-                </a>
-    </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ado-1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="ad">
+        <div class="container">
+            <div class="img">
+                <img src="./assets/imgs/ad-2.jpg" alt="">
+            </div>
         </div>
     </section>
 
     <footer>
-        كل الحفوق محفوظة لدي نادي ماما <svg xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        كل الحفوق محفوظة لدي نادي ماما <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
             <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173" />
-        </svg> 2023
+          </svg> 2023
     </footer>
 
     <script src="./assets/js/swiper.js"></script>
@@ -305,6 +238,6 @@
     <script src="assets/js/axios.js"></script>
     <script src="assets/js/vue.js"></script>
     <script src="assets/js/auth.js"></script>
+        
 </body>
-
 </html>
