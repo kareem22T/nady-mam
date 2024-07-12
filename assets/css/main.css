@@ -980,7 +980,7 @@ footer svg {
   margin-bottom: 8px;
   color: #001635;
 }
-.login-popup input, .register-popup input, .booking-popup input, .success-booking-popup input {
+.login-popup input, .register-popup input, .booking-popup input, .success-booking-popup input, input, textarea {
   width: 100%;
   padding: 8px 16px;
   border: 1px solid #dadada;
@@ -991,7 +991,7 @@ footer svg {
   color: #001635;
   margin-bottom: 10px;
 }
-.login-popup .submit, .register-popup .submit, .booking-popup .submit, .success-booking-popup .submit {
+.login-popup .submit, .register-popup .submit, .booking-popup .submit, .success-booking-popup .submit, .submit-btn {
   padding: 8px 16px;
   border-radius: 10px;
   background-color: #2b78df;
